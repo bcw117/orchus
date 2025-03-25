@@ -1,0 +1,88 @@
+@import "/public/satoshi.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 30% 14%; /* #1A1F2C - Dark background */
+    --foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --card: 260 15% 30%; /* #301934 - Dark Purple card background */
+    --card-foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --popover: 252 30% 40%; /* #5D4D9A - Purple popover background */
+    --popover-foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --primary: 200 100% 45%; /* #0095E6 - Bright Blue for buttons/accents */
+    --primary-foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --secondary: 222 35% 10%; /* #111722 - Darker variant for secondary elements */
+    --secondary-foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --muted: 222 35% 10%; /* #111722 - Dark muted background */
+    --muted-foreground: 0 0% 80%; /* Slightly dimmed white for less emphasis */
+
+    --accent: 200 100% 45%; /* #0095E6 - Bright Blue for accent elements */
+    --accent-foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%; /* Pure White #FFFFFF */
+
+    --border: 252 30% 30%; /* Darker variant of card color for borders */
+    --input: 252 30% 30%;
+    --ring: 200 100% 45%; /* #0095E6 - Bright Blue for focus rings */
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    @apply antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-secondary/80 backdrop-blur-md border border-white/10 shadow-lg;
+  }
+
+  .glass-button {
+    @apply bg-primary/90 hover:bg-primary/95 text-primary-foreground backdrop-blur-sm transition-all duration-300 ease-in-out transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .agent-card {
+    @apply glass-card rounded-xl p-6 transition-all duration-300 ease-out hover:shadow-xl;
+    @apply transform hover:translate-y-[-5px];
+  }
+
+  .page-transition {
+    @apply animate-fade-in;
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 rounded-md text-sm font-medium transition-colors;
+    @apply after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-in-out;
+    @apply hover:text-primary hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+
+  .nav-link.active {
+    @apply text-primary after:scale-x-100 after:origin-bottom-left;
+  }
+
+  .subtle-ring-focus {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
